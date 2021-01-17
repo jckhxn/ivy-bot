@@ -1,0 +1,31 @@
+{
+  "name": "mocking-bot-discord",
+  "version": "1.0.0",
+  "description": "Listens for :mocking: reaction on messages, responds by mocking the message.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Jack Hixon",
+  "license": "MIT",
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "discord-tts": "^1.0.1",
+    "discord.js": "^12.3.1",
+    "fuse.js": "^6.4.1",
+    "http": "0.0.1-security",
+    "node-emoji": "^1.10.0",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9",
+    "snekfetch": "^4.0.4",
+    "valid-url": "^1.0.9",
+    "wavefile": "^11.0.0"
+  },
+  "devDependencies": {
+    "nanoid": "^3.1.12"
+  }
+}
