@@ -6,7 +6,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
-
+const tile = require('./commands/tile');
 let emoji = require("node-emoji");
 let sentEmojis = [];
 
@@ -15,6 +15,12 @@ let sentEmojis = [];
 client.on("ready", () => {
   console.log("I am ready!");
 });
+
+client.on("message",(message) => {
+  if (message.content.startsWith("!tile")) {
+    message.channel.send("Made Tile w/ values")
+  } 
+})
 
 client.on("guildMemberAdd", (member) => {
   // Do thing when a new user joins
