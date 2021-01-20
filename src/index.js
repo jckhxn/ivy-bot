@@ -36,11 +36,7 @@ client.on("guildMemberAdd", (member) => {
     defaultEmojiArray[Math.floor(Math.random() * defaultEmojiArray.length)];
 
   let channel = member.guild.channels.cache.get(member.guild.systemChannelID);
-
-  if(message.includes("flag"))
-  {
-    console.log("Flag Emoji")
-  }
+  
   if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
