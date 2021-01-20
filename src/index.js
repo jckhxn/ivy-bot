@@ -16,11 +16,7 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("message",(message) => {
-  if (message.content.startsWith("!tile")) {
-    message.channel.send("Made Tile w/ values")
-  } 
-})
+
 
 client.on("guildMemberAdd", (member) => {
   // Do thing when a new user joins
@@ -41,6 +37,10 @@ client.on("guildMemberAdd", (member) => {
 
   let channel = member.guild.channels.cache.get(member.guild.systemChannelID);
 
+  if(message.includes("flag"))
+  {
+    console.log("Flag Emoji")
+  }
   if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
