@@ -36,7 +36,7 @@ client.on("guildMemberAdd", async (member) => {
     defaultEmojiArray[Math.floor(Math.random() * defaultEmojiArray.length)];
 
   let channel = member.guild.channels.cache.get(member.guild.systemChannelID);
-  
+  console.log(randomEmoji)
   if(!randomEmoji)
   {
    
@@ -46,6 +46,7 @@ client.on("guildMemberAdd", async (member) => {
       lastMessage.react(emoji.get('smile'));
    
   })}
+
   else if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
