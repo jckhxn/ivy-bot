@@ -26,24 +26,30 @@ client.on("guildMemberAdd", async (member) => {
     sentEmojis = [];
   }
 
-  // Find emoji based on username
-  let firstLetters = member.user.username.substring(0, 2);
+  // Find emoji based on username, randomly.
+  
+  let firstLetters = member.user.username.substring(0, Math.random() * Math.floor(3)) 
+  
   let emojiArray = emoji.search(firstLetters);
+
   let defaultEmojiArray = emoji.search("");
+  
 
   let randomEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+
   let randomDefaultEmoji =
     defaultEmojiArray[Math.floor(Math.random() * defaultEmojiArray.length)];
 
   let channel = member.guild.channels.cache.get(member.guild.systemChannelID);
-  console.log(randomEmoji)
+
   if(!randomEmoji)
   {
+    console.log("No emoji found")
    
       channel.messages.fetch({ limit: 1 }).then((messages) => {
       let lastMessage = messages.first();
 
-      lastMessage.react(emoji.get('smile'));
+      lastMessage.react(randomDefaultEmoji.emoji);
    
   })}
 
@@ -77,4 +83,4 @@ client.on("guildMemberAdd", async (member) => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+client.login("ODAwMDUxNzkzNTAwOTYyODc2.YAMgSw.axlQ6oCC0DUykYIguU9ACnIjxRw");
