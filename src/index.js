@@ -18,7 +18,7 @@ client.on("ready", () => {
 
 
 
-client.on("guildMemberAdd", (member) => {
+client.on("guildMemberAdd", async (member) => {
   // Do thing when a new user joins
   // Keeping track of emojis logic.
   if (sentEmojis.length == 20) {
@@ -41,12 +41,21 @@ client.on("guildMemberAdd", (member) => {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
 
-    channel.messages.fetch({ limit: 1 }).then((messages) => {
+    try {
+      channel.messages.fetch({ limit: 1 }).then((messages) => {
       let lastMessage = messages.first();
 
       lastMessage.react(randomDefaultEmoji.emoji);
     });
-  } else {
+  }
+  catch(error)
+  {
+    console.log(error)
+  }
+}
+
+  
+  else {
     // Get Channel ID then find last msg to react to (server message)
 
     channel.messages.fetch({ limit: 1 }).then((messages) => {
