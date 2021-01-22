@@ -37,7 +37,16 @@ client.on("guildMemberAdd", async (member) => {
 
   let channel = member.guild.channels.cache.get(member.guild.systemChannelID);
   
-  if (sentEmojis.includes(randomEmoji.key)) {
+  if(!randomEmoji)
+  {
+   
+      channel.messages.fetch({ limit: 1 }).then((messages) => {
+      let lastMessage = messages.first();
+
+      lastMessage.react(emoji.get('smile'));
+   
+  })}
+  else if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
 
