@@ -27,7 +27,7 @@ client.on("guildMemberAdd", async (member) => {
   }
 
   // Find emoji based on username
-  let firstLetters = member.user.username.substring(0, 1);
+  let firstLetters = member.user.username.substring(0, 2);
   let emojiArray = emoji.search(firstLetters);
   let defaultEmojiArray = emoji.search("");
 
