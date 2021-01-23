@@ -16,6 +16,7 @@
     "chroma-js": "^2.1.0",
     "discord-tts": "^1.0.1",
     "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
     "fuse.js": "^6.4.1",
     "http": "0.0.1-security",
     "node-emoji": "^1.10.0",

@@ -6,11 +6,13 @@ const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
+require("dotenv").config();
+
 const tile = require('./commands/tile');
 let emoji = require("node-emoji");
 let sentEmojis = [];
 
-// require("dotenv").config();
+
 
 client.on("ready", () => {
   console.log("I am ready!");
@@ -92,5 +94,5 @@ client.on("guildMemberAdd", async (member) => {
   }
 });
 
-// client.login(process.env.DISCORD_TOKEN);
-client.login("ODAwMDUxNzkzNTAwOTYyODc2.YAMgSw.Ag3j7t4S4NngUDq-QyA2o2vZRdc")
+
+client.login(process.env.DISCORD_TOKEN);
