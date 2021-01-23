@@ -17,15 +17,16 @@ client.on("ready", () => {
 });
 
 
-client.on("message",(channel,message,self))
+client.on("message",async (message,self) =>
 {
 
-  if(message.startsWith('!'))
+  
+  if(message.content.startsWith('!'))
   {
     tile(message)
   }
 }
-
+);
 client.on("guildMemberAdd", async (member) => {
   // Do thing when a new user joins
   // Keeping track of emojis logic.
@@ -91,4 +92,5 @@ client.on("guildMemberAdd", async (member) => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+// client.login(process.env.DISCORD_TOKEN);
+client.login("ODAwMDUxNzkzNTAwOTYyODc2.YAMgSw.Ag3j7t4S4NngUDq-QyA2o2vZRdc")
