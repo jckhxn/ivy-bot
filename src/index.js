@@ -17,6 +17,14 @@ client.on("ready", () => {
 });
 
 
+client.on("message",(channel,message,self))
+{
+
+  if(message.startsWith('!'))
+  {
+    tile(message)
+  }
+}
 
 client.on("guildMemberAdd", async (member) => {
   // Do thing when a new user joins
