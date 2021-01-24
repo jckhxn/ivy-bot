@@ -40,7 +40,8 @@ client.on("guildMemberAdd", async (member) => {
 
   //splits new member's username, removing special characters, into an array
   const re = "/[A-z]/g";
-  let splitName = member.user.usernamereplace.replace(re, "").split("");
+  
+  let splitName = member.user.replace(re, "").split("");
   let query;
 
   if (splitName.length > 0) {
