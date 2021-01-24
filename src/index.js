@@ -1,7 +1,3 @@
-//  Issues
-//  Stress testing it sometimes the bot reacts to the previous msg
-//  I think this is a Discord cache issue, maybe enforce  w/ timestamp
-// Flags sometimes show up???
 const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
@@ -41,7 +37,7 @@ client.on("guildMemberAdd", async (member) => {
   //splits new member's username, removing special characters, into an array
   const re = "/[A-z]/g";
   
-  let splitName = member.user.replace(re, "").split("");
+  let splitName = member.user.toString().replace(re, "").split("");
   let query;
 
   if (splitName.length > 0) {
