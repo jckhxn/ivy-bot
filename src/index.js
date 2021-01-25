@@ -3,7 +3,7 @@ const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
 require("dotenv").config();
-const tile = require("./commands/tile");
+// const tile = require("./commands/tile");
 const emoji = require("node-emoji");
 
 const sentEmojis = [];
@@ -15,9 +15,10 @@ client.on("ready", () => {
 
 client.on("message", async (message,guild) => {
   
-  if (message.content.startsWith("!")) {
-    tile(message);
-  }
+  // I'm too lazy to figure out why imports aren't working.
+  // if (message.content.startsWith("!")) {
+  //   tile(message);
+  // }
   
 });
 
