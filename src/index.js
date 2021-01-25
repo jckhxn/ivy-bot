@@ -5,17 +5,20 @@ const client = new Discord.Client({
 require("dotenv").config();
 const tile = require("./commands/tile");
 const emoji = require("node-emoji");
-const { search } = require("snekfetch");
+
 const sentEmojis = [];
 
 client.on("ready", () => {
   console.log("I am ready!");
+
 });
 
-client.on("message", async (message) => {
+client.on("message", async (message,guild) => {
+  
   if (message.content.startsWith("!")) {
     tile(message);
   }
+  
 });
 
 //on user join
