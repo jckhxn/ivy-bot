@@ -1,5 +1,6 @@
 # Fancy Pants Documentation 
 
+![Ivy Demo](demo.gif)
 Ivy Bot will greet your new Discord member with a reaction emoji based on the
 first letter or first two letters of their user.
 
