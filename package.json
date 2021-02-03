@@ -21,6 +21,7 @@
     "http": "0.0.1-security",
     "node-emoji": "^1.10.0",
     "node-fetch": "^2.6.1",
+    "prompt-sync": "^4.2.0",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "snekfetch": "^4.0.4",

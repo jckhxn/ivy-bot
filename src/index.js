@@ -6,11 +6,12 @@ require("dotenv").config();
 // const tile = require("./commands/tile");
 const emoji = require("node-emoji");
 
+
+
 const sentEmojis = [];
 
-client.on("ready", () => {
+client.on("ready",  () => {
   console.log("I am ready!");
-
 });
 
 client.on("message", async (message,guild) => {
@@ -56,6 +57,21 @@ client.on("guildMemberAdd", async (member) => {
   //calls the emoji search function
   let randomEmoji = searchForRandomEmoji(query);
 
+  if(randomEmoji.key.includes("flag"))
+  {
+    // If this doesn't work, well what the fuck.
+    console.log("Flag, flag.");
+    try {
+      channel.messages.fetch({ limit: 1 }).then((messages) => {
+        let lastMessage = messages.first();
+        let newRandomEmoji = searchForRandomEmoji("");
+
+        lastMessage.react(newRandomEmoji.emoji);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
