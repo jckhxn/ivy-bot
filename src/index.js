@@ -59,12 +59,14 @@ client.on("guildMemberAdd", async (member) => {
 
   if(randomEmoji.key.includes("flag"))
   {
-    // If this doesn't work, well what the fuck.
+    
+    // It should just send a smiley for crying out loud.
     console.log("Flag, flag.");
     try {
       channel.messages.fetch({ limit: 1 }).then((messages) => {
+        
         let lastMessage = messages.first();
-        let newRandomEmoji = searchForRandomEmoji("");
+        let newRandomEmoji = searchForRandomEmoji("smile");
 
         lastMessage.react(newRandomEmoji.emoji);
       });
