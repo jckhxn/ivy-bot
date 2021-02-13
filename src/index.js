@@ -6,21 +6,17 @@ require("dotenv").config();
 // const tile = require("./commands/tile");
 const emoji = require("node-emoji");
 
-
-
 const sentEmojis = [];
 
-client.on("ready",  () => {
+client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("message", async (message,guild) => {
-  
+client.on("message", async (message, guild) => {
   // I'm too lazy to figure out why imports aren't working.
   // if (message.content.startsWith("!")) {
   //   tile(message);
   // }
-  
 });
 
 //on user join
@@ -41,7 +37,7 @@ client.on("guildMemberAdd", async (member) => {
 
   //splits new member's username, removing special characters, into an array
   const re = "/[A-z]/g";
-  
+
   let splitName = member.user.toString().replace(re, "").split("");
   let query;
 
@@ -56,24 +52,6 @@ client.on("guildMemberAdd", async (member) => {
 
   //calls the emoji search function
   let randomEmoji = searchForRandomEmoji(query);
-
-  if(randomEmoji.key.includes("flag"))
-  {
-    
-    // It should just send a smiley for crying out loud.
-    console.log("Flag, flag.");
-    try {
-      channel.messages.fetch({ limit: 1 }).then((messages) => {
-        
-        let lastMessage = messages.first();
-        let newRandomEmoji = searchForRandomEmoji("smile");
-
-        lastMessage.react(newRandomEmoji.emoji);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
   if (sentEmojis.includes(randomEmoji.key)) {
     // Sends a completely random emoji if one has been sent before.
     console.log("Emoji already used");
@@ -89,19 +67,34 @@ client.on("guildMemberAdd", async (member) => {
       console.log(error);
     }
   } else {
-    // Get Channel ID then find last msg to react to (server message)
-    channel.messages.fetch({ limit: 1 }).then((messages) => {
-      let lastMessage = messages.first();
+    if (randomEmoji.key.includes("flag")) {
+      // It should just send a smiley for crying out loud.
+      console.log("Flag, flag.");
+      try {
+        channel.messages.fetch({ limit: 1 }).then((messages) => {
+          let lastMessage = messages.first();
+          let newRandomEmoji = searchForRandomEmoji("smile");
 
-      lastMessage.react(randomEmoji.emoji);
-    });
+          lastMessage.react(newRandomEmoji.emoji);
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      // Get Channel ID then find last msg to react to (server message)
+      channel.messages.fetch({ limit: 1 }).then((messages) => {
+        let lastMessage = messages.first();
 
-    //checks to see if length of tracked emojis is equal to 20
-    //if so, removes first (oldest) emoji from array
-    if (sentEmojis.length === 20) {
-      sentEmojis = sentEmojis.shift();
+        lastMessage.react(randomEmoji.emoji);
+      });
+
+      //checks to see if length of tracked emojis is equal to 20
+      //if so, removes first (oldest) emoji from array
+      if (sentEmojis.length === 20) {
+        sentEmojis = sentEmojis.shift();
+      }
+      sentEmojis.push(randomEmoji.key);
     }
-    sentEmojis.push(randomEmoji.key);
   }
 });
 
