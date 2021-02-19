@@ -61,7 +61,7 @@ client.on("guildMemberAdd", async (member) => {
         let lastMessage = messages.first();
         let newRandomEmoji = searchForRandomEmoji("");
 
-       await  lastMessage.react(newRandomEmoji.emoji);
+        lastMessage.react(newRandomEmoji.emoji);
       });
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ client.on("guildMemberAdd", async (member) => {
           let lastMessage = messages.first();
           let newRandomEmoji = searchForRandomEmoji("smile");
 
-          await lastMessage.react(newRandomEmoji.emoji);
+          lastMessage.react(newRandomEmoji.emoji);
         });
       } catch (error) {
         console.log(error);
@@ -85,7 +85,7 @@ client.on("guildMemberAdd", async (member) => {
       channel.messages.fetch({ limit: 1 }).then((messages) => {
         let lastMessage = messages.first();
 
-        await lastMessage.react(randomEmoji.emoji);
+        lastMessage.react(randomEmoji.emoji);
       });
 
       //checks to see if length of tracked emojis is equal to 20
