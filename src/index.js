@@ -30,7 +30,7 @@ app.post('/',(req,res) => {
 
   if(generalChannel)
   {
-    generalChannel.channel.send(":smile: Received hook.");
+    generalChannel.send(":smile: Received hook.");
   }
   res.sendStatus(200);
   console.log(req.body);
