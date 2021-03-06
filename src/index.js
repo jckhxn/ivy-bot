@@ -26,13 +26,16 @@ client.on("ready", () => {
 });
 
 app.post('/',(req,res) => {
+  // Get channel ID by text.
   let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
   let {content} = req.body;
-  console.log(req.body);
-   console.log(content)
+  // Here you can destruct anything off the JSON sent
+  // by IFTTT.
+  // console.log(req.body);
+  // console.log(content)
   if(generalChannel)
   {
-    // generalChannel.send(":smile: Received hook.");
+     generalChannel.send(content);
   }
   res.sendStatus(200);
   
