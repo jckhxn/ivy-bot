@@ -26,8 +26,14 @@ client.on("ready", () => {
 });
 
 app.post('/',(req,res) => {
+  let generalChannel = Client.channels.cache.get('666462544864739338')
+  if(generalChannel)
+  {
+    generalChannel.channel.send(req.body);
+  }
   res.sendStatus(200);
   console.log(req.body);
+
 })
 client.on("message", async (message, guild) => {
   // I'm too lazy to figure out why imports aren't working.
