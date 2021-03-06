@@ -27,10 +27,11 @@ client.on("ready", () => {
 
 app.post('/',(req,res) => {
   let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
-  let {content,LinkToTweet} = req.body;
-  let embed = new Discord.MessageEmbed()
-  .setURL(`${LinkToTweet}`)
-   console.log(content,LinkToTweet)
+  let {content,linktotweet} = req.body;
+  // let embed = new Discord.MessageEmbed()
+  // .setURL(`${LinkToTweet}`)
+
+   console.log(content,linktotweet)
   if(generalChannel)
   {
     // generalChannel.send(":smile: Received hook.");
