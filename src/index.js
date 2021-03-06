@@ -28,6 +28,7 @@ client.on("ready", () => {
 app.post('/',(req,res) => {
   let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
   let {content} = req.body;
+  console.log(req.body);
    console.log(content)
   if(generalChannel)
   {
