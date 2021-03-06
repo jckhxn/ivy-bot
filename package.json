@@ -17,6 +17,7 @@
     "discord-tts": "^1.0.1",
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "fuse.js": "^6.4.1",
     "http": "0.0.1-security",
     "node-emoji": "^1.10.0",

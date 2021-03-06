@@ -1,8 +1,17 @@
+require("dotenv").config();
+let express = require('express')
+const app = express();
+app.listen(3000, () =>
+  console.log('Example app listening on port 3000!'),
+);
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
-require("dotenv").config();
+
 // const tile = require("./commands/tile");
 const emoji = require("node-emoji");
 
