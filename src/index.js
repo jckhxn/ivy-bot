@@ -27,13 +27,14 @@ client.on("ready", () => {
 
 app.post('/',(req,res) => {
   let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
-
+  let {content} = req.body;
+  console.log(content)
   if(generalChannel)
   {
-    generalChannel.send(":smile: Received hook.");
+    // generalChannel.send(":smile: Received hook.");
   }
   res.sendStatus(200);
-  console.log(req.body);
+  
 
 })
 client.on("message", async (message, guild) => {
