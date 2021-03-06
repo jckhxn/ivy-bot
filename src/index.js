@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 app.post('/',(req,res) => {
-  
+  res.send(200);
   console.log(req.body);
 })
 const Discord = require("discord.js");
