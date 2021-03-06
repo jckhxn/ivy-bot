@@ -7,6 +7,10 @@ app.listen(3000, () =>
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+app.post('/',(req,res) => {
+  
+  console.log(req.body);
+})
 const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
