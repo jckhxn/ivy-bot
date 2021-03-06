@@ -5,11 +5,9 @@ const app = express();
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.listen(process.env.PORT||3000, () =>
-  console.log('Example app listening on port 3000!'),
+  console.log('Listening on port 3000!'),
 );
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+
 
 const Discord = require("discord.js");
 const client = new Discord.Client({
@@ -25,22 +23,24 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-app.post('/',(req,res) => {
-  // Get channel ID by text.
-  let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
-  let {content} = req.body;
-  // Here you can destruct anything off the JSON sent
-  // by IFTTT.
-  // console.log(req.body);
-  // console.log(content)
-  if(generalChannel)
-  {
-     generalChannel.send(content);
-  }
-  res.sendStatus(200);
+// app.post('/',(req,res) => {
+//   Holy shit change this to something more secure.
+
+//   Get channel ID by text.
+//   let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
+//   let {content} = req.body;
+//   Here you can destruct anything off the JSON sent
+//   by IFTTT.
+//   console.log(req.body);
+//   console.log(content)
+//   if(generalChannel)
+//   {
+//      generalChannel.send(content);
+//   }
+//   res.sendStatus(200);
   
 
-})
+// })
 client.on("message", async (message, guild) => {
   // I'm too lazy to figure out why imports aren't working.
   // if (message.content.startsWith("!")) {
