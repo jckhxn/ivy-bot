@@ -26,10 +26,11 @@ client.on("ready", () => {
 });
 
 app.post('/',(req,res) => {
-  let generalChannel = Client.channels.cache.get('666462544864739338')
+  let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() == 'general');
+
   if(generalChannel)
   {
-    generalChannel.channel.send(req.body);
+    generalChannel.channel.send(":smile: Received hook.");
   }
   res.sendStatus(200);
   console.log(req.body);
