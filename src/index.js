@@ -1,16 +1,16 @@
 require("dotenv").config();
 let express = require('express')
+let bodyParser = require('body-parser')
 const app = express();
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.listen(process.env.PORT||3000, () =>
   console.log('Example app listening on port 3000!'),
 );
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-app.post('/',(req,res) => {
-  res.send(200);
-  console.log(req.body);
-})
+
 const Discord = require("discord.js");
 const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
@@ -25,6 +25,10 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
+app.post('/',(req,res) => {
+  res.sendStatus(200);
+  console.log(req.body);
+})
 client.on("message", async (message, guild) => {
   // I'm too lazy to figure out why imports aren't working.
   // if (message.content.startsWith("!")) {
