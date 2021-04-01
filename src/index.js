@@ -13,9 +13,9 @@ const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
 
-const commandsEmbed = new Discord.MessageEmbed()
+const commandsEmbed =  new Discord.MessageEmbed()
   .setTitle("List of Commands")
-  .addField({
+  .addFields({
     name: "/ivy",
     value: "Lists Commands",
   });
