@@ -1,17 +1,6 @@
 require("dotenv").config();
 let express = require("express");
 let bodyParser = require("body-parser");
-
-const reply = (interaction, response) => {
-  client.api.interactions(interaction.id, interaction.token).callback.post({
-    data: {
-      type: 4,
-      data: {
-        content: response,
-      },
-    },
-  });
-};
 const app = express();
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -24,6 +13,38 @@ const client = new Discord.Client({
   ws: { intents: Discord.Intents.ALL },
 });
 
+const commandsEmbed = new Discord.MessageEmbed()
+  .setTitle("List of Commands")
+  .addField({
+    name: "/ivy",
+    value: "Lists Commands",
+  });
+
+const createAPIMessage = async (interaction, content) => {
+  const { data, files } = await Discord.APIMessage.create(
+    client.channels.resolve(interaction.channel_id),
+    content
+  )
+    .resolveData()
+    .resolveFiles();
+  return { ...data, files };
+};
+
+const reply = async (interaction, response) => {
+  let data = {
+    content: response,
+  };
+  // If reply is object, make it an embed.
+  if (typeof response === "object") {
+    data = await createAPIMessage(interaction, response);
+  }
+  client.api.interactions(interaction.id, interaction.token).callback.post({
+    data: {
+      type: 4,
+      data,
+    },
+  });
+};
 // const tile = require("./commands/tile");
 const emoji = require("node-emoji");
 
@@ -37,7 +58,7 @@ client.ws.on("INTERACTION_CREATE", async (interaction) => {
   const command = interaction.data.name.toLowerCase();
   if (command === "ivy") {
     // Default commands list.
-    reply(interaction, "This is a default list of commands.");
+    reply(interaction, commandsEmbed);
   }
 });
 // app.post('/',(req,res) => {
