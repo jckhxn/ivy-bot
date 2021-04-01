@@ -1,13 +1,23 @@
 require("dotenv").config();
-let express = require('express')
-let bodyParser = require('body-parser')
-const app = express();
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-app.listen(process.env.PORT||3000, () =>
-  console.log('Listening on port 3000!'),
-);
+let express = require("express");
+let bodyParser = require("body-parser");
 
+const reply = (interaction, response) => {
+  client.api.interactions(interaction.id, interaction.token).callback.post({
+    data: {
+      type: 4,
+      data: {
+        content: response,
+      },
+    },
+  });
+};
+const app = express();
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`Listening on port ${process.env.PORT}`)
+);
 
 const Discord = require("discord.js");
 const client = new Discord.Client({
@@ -23,6 +33,13 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
+client.ws.on("INTERACTION_CREATE", async (interaction) => {
+  const command = interaction.data.name.toLowerCase();
+  if (command === "ivy") {
+    // Default commands list.
+    reply(interaction, "This is a default list of commands.");
+  }
+});
 // app.post('/',(req,res) => {
 //   Holy shit change this to something more secure.
 
@@ -38,9 +55,15 @@ client.on("ready", () => {
 //      generalChannel.send(content);
 //   }
 //   res.sendStatus(200);
-  
 
 // })
+
+app.get("/guilds", (req, res) => {
+  // Return some FUCKING CHANNEL IDS BOIII
+  let allChannels = client.guilds.cache.map((g) => g.id).join("\n");
+  res.send(allChannels);
+});
+
 client.on("message", async (message, guild) => {
   // I'm too lazy to figure out why imports aren't working.
   // if (message.content.startsWith("!")) {
